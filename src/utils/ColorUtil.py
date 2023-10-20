@@ -1,0 +1,20 @@
+__author__ = 'john'
+
+RED = (255, 0, 0)
+PINK = (170, 60, 60)
+YELLOW = (255, 150, 0)
+GREEN = (0, 255, 0)
+CYAN = (0, 255, 255)
+H_CYAN = (0, 130, 130)
+BLUE = (0, 0, 102)
+DBLUE = (0, 0, 255)
+PURPLE = (180, 0, 255)
+WHITE = (255, 255, 255)
+OFF = (0, 0, 0)
+ORANGE = (255, 60, 0)
+# ORANGE = (255, 85, 0)
+GREEN1 = (0, 125, 0)
+ORANGE1 = (255, 85, 0)
+BULB_WHITE = (255, 150, 45)
+
+colors = {"RED":RED, "ORANGE":ORANGE, "YELLOW": YELLOW, "GREEN":GREEN, "BLUE":BLUE, "PURPLE":PURPLE}
