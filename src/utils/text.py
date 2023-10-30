@@ -64,7 +64,6 @@ def m(dx, dy, color, matrix: Matrix):
     matrix.setPixel(1+dx, 1+dy, color)
     matrix.setPixel(3+dx, 1 +dy, color)
     matrix.setPixel(2+dx, 2 +dy, color)
-    matrix.setPixel(2+dx, 3 +dy, color)
 
 
 def o(dx, dy, color, matrix: Matrix):
