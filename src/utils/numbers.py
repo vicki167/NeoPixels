@@ -1,17 +1,17 @@
-from .matrix import Matrix
+from utils.matrix import Matrix
 
 #  default is 7 X 14
 #  0123456
 
 
-def one(dx, dy, color, matrix: Matrix):
+def _1(dx, dy, color, matrix: Matrix):
     # put all the way to the right
     for y in range(14):
         matrix.setPixel(5+dx, y+dy, color)
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def two(dx, dy, color, matrix: Matrix):
+def _2(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in range(8):
         matrix.setPixel(x+dx, 0+dy, color)
@@ -29,7 +29,7 @@ def two(dx, dy, color, matrix: Matrix):
         matrix.setPixel(1+dx, y+dy, color)
 
 
-def three(dx, dy, color, matrix: Matrix):
+def _3(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in range(8):
         matrix.setPixel(x+dx, 0+dy, color)
@@ -45,7 +45,7 @@ def three(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def four(dx, dy, color, matrix: Matrix):
+def _4(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in [2, 3, 4]:
         matrix.setPixel(x+dx, 6+dy, color)
@@ -59,7 +59,7 @@ def four(dx, dy, color, matrix: Matrix):
         matrix.setPixel(7+dx, y+dy, color)
 
 
-def five(dx, dy, color, matrix: Matrix):
+def _5(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in range(8):
         matrix.setPixel(x+dx, 0+dy, color)
@@ -77,7 +77,7 @@ def five(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def six(dx, dy, color, matrix: Matrix):
+def _6(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in range(8):
         matrix.setPixel(x+dx, 0+dy, color)
@@ -97,7 +97,7 @@ def six(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def seven(dx, dy, color, matrix: Matrix):
+def _7(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in range(8):
         matrix.setPixel(x+dx, 0+dy, color)
@@ -107,7 +107,7 @@ def seven(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def eight(dx, dy, color, matrix: Matrix):
+def _8(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in [2, 3, 4]:
         matrix.setPixel(x+dx, 0+dy, color)
@@ -123,7 +123,7 @@ def eight(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def nine(dx, dy, color, matrix: Matrix):
+def _9(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in [2, 3, 4]:
         matrix.setPixel(x+dx, 0+dy, color)
@@ -138,7 +138,7 @@ def nine(dx, dy, color, matrix: Matrix):
         matrix.setPixel(6+dx, y+dy, color)
 
 
-def zero(dx, dy, color, matrix: Matrix):
+def _0(dx, dy, color, matrix: Matrix):
     # horizontal parts
     for x in [2, 3, 4]:
         matrix.setPixel(x+dx, 0+dy, color)
@@ -151,3 +151,6 @@ def zero(dx, dy, color, matrix: Matrix):
         matrix.setPixel(5+dx, y+dy, color)
         matrix.setPixel(6+dx, y+dy, color)
 
+
+def _99(dx, dy):
+    print(f'dx: {dx}, dy: {dy}')
