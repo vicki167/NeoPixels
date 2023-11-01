@@ -1,5 +1,3 @@
-import numbers
-
 from utils.ColorUtil import *
 from utils.matrix import Matrix
 from utils.text import *
@@ -17,26 +15,26 @@ class ChristmasCounterDowner:
 
     def _setup_text(self):
         #  days
-        d(24, 2, self.tc)
-        a(29, 2, self.tc)
-        y(33, 2, self.tc)
-        s(37, 2, self.tc)
+        d(24, 2, self.tc, self.matrix)
+        a(29, 2, self.tc, self.matrix)
+        y(33, 2, self.tc, self.matrix)
+        s(37, 2, self.tc, self.matrix)
         #  till
-        t(26, 8, self.tc)
-        i(30, 8, self.tc)
-        l(32, 8, self.tc)
-        l(36, 8, self.tc)
+        t(26, 8, self.tc, self.matrix)
+        i(30, 8, self.tc, self.matrix)
+        l(32, 8, self.tc, self.matrix)
+        l(36, 8, self.tc, self.matrix)
         #  Christmas
-        c(3, 15, self.tc)
-        h(7, 16, self.tc)
-        r(11, 15, self.tc)
-        i(15, 15, self.tc)
-        s(17, 15, self.tc)
-        t(21, 15, self.tc)
-        m(25, 15, self.tc)
-        a(31, 15, self.tc)
-        s(35, 15, self.tc)
-        bang(39, 15, self.tc)
+        c(3, 15, self.tc, self.matrix)
+        h(7, 16, self.tc, self.matrix)
+        r(11, 15, self.tc, self.matrix)
+        i(15, 15, self.tc, self.matrix)
+        s(17, 15, self.tc, self.matrix)
+        t(21, 15, self.tc, self.matrix)
+        m(25, 15, self.tc, self.matrix)
+        a(31, 15, self.tc, self.matrix)
+        s(35, 15, self.tc, self.matrix)
+        bang(39, 15, self.tc, self.matrix)
 
     def set_days(self, days_to_go: int):
         # get 100s place
@@ -50,7 +48,7 @@ class ChristmasCounterDowner:
         digits.append(days_to_go % 10)
         # draw each digit
         digit_width = 8
-        for idx, digit in digits:
+        for idx, digit in enumerate(digits):
             self._get_method(digit)(digit_width * idx, 0, self.nc, self.matrix)
 
     def _get_method(self, n: int):
