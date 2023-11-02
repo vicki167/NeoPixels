@@ -163,7 +163,7 @@ def drawWinkingJackOLantern(dx, dy, matrix):
     #(0-19 is 0)
     PUMPKIN_ORANGE = (240, 120, 0)
     matrix.setPixel(9+dx, 0+dy, GREEN)
-    matrix.setPixel(11+dx, 0+dy, GREEN)
+    matrix.setPixel(10+dx, 0+dy, GREEN)
     matrix.setPixel(11+dx, 0+dy, GREEN)
     # row (39-20 is 1)
     matrix.setPixel(7+dx, 1+dy, PUMPKIN_ORANGE)

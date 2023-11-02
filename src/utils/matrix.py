@@ -71,6 +71,7 @@ class Matrix:
             p = self.get_pix_num(y, x, swap_x=True)
         elif self.origin == LOWER_RIGHT:
             p = self.get_pix_num(y, x, swap_x=True, swap_y=True)
+            print(p)
             # self.baseSetPixel_lr(x,y,color)
         elif self.origin == UPPER_RIGHT:
             p = self.get_pix_num(x, y, swap_x=True)

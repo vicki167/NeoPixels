@@ -13,7 +13,7 @@ def _1(dx, dy, color, matrix: Matrix):
 
 def _2(dx, dy, color, matrix: Matrix):
     # horizontal parts
-    for x in range(8):
+    for x in range(7):
         matrix.setPixel(x+dx, 0+dy, color)
         matrix.setPixel(x+dx, 1+dy, color)
         matrix.setPixel(x+dx, 6+dy, color)
@@ -31,7 +31,7 @@ def _2(dx, dy, color, matrix: Matrix):
 
 def _3(dx, dy, color, matrix: Matrix):
     # horizontal parts
-    for x in range(8):
+    for x in range(7):
         matrix.setPixel(x+dx, 0+dy, color)
         matrix.setPixel(x+dx, 1+dy, color)
         if x not in [0, 1]:
@@ -52,16 +52,16 @@ def _4(dx, dy, color, matrix: Matrix):
         matrix.setPixel(x+dx, 7+dy, color)
     # vertical parts left to draw
     for y in range(14):
-        if y < 6:
+        if y < 8:
             matrix.setPixel(0+dx, y+dy, color)
             matrix.setPixel(1+dx, y+dy, color)
+        matrix.setPixel(5+dx, y+dy, color)
         matrix.setPixel(6+dx, y+dy, color)
-        matrix.setPixel(7+dx, y+dy, color)
 
 
 def _5(dx, dy, color, matrix: Matrix):
     # horizontal parts
-    for x in range(8):
+    for x in range(7):
         matrix.setPixel(x+dx, 0+dy, color)
         matrix.setPixel(x+dx, 1+dy, color)
         matrix.setPixel(x+dx, 6+dy, color)
@@ -79,7 +79,7 @@ def _5(dx, dy, color, matrix: Matrix):
 
 def _6(dx, dy, color, matrix: Matrix):
     # horizontal parts
-    for x in range(8):
+    for x in range(7):
         matrix.setPixel(x+dx, 0+dy, color)
         matrix.setPixel(x+dx, 1+dy, color)
         matrix.setPixel(x+dx, 6+dy, color)
@@ -99,7 +99,7 @@ def _6(dx, dy, color, matrix: Matrix):
 
 def _7(dx, dy, color, matrix: Matrix):
     # horizontal parts
-    for x in range(8):
+    for x in range(7):
         matrix.setPixel(x+dx, 0+dy, color)
         matrix.setPixel(x+dx, 1+dy, color)
     for y in range(2, 14):

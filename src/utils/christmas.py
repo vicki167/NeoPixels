@@ -26,7 +26,7 @@ class ChristmasCounterDowner:
         l(36, 8, self.tc, self.matrix)
         #  Christmas
         c(3, 15, self.tc, self.matrix)
-        h(7, 16, self.tc, self.matrix)
+        h(7, 15, self.tc, self.matrix)
         r(11, 15, self.tc, self.matrix)
         i(15, 15, self.tc, self.matrix)
         s(17, 15, self.tc, self.matrix)
@@ -35,10 +35,15 @@ class ChristmasCounterDowner:
         a(31, 15, self.tc, self.matrix)
         s(35, 15, self.tc, self.matrix)
         bang(39, 15, self.tc, self.matrix)
+        self.matrix.show()
 
     def set_days(self, days_to_go: int):
         # get 100s place
-        digits = [int(days_to_go / 100)]
+        start = 6
+        digits = []
+        if days_to_go > 99:
+            digits.append(int(days_to_go / 100))
+            start = 0
         # get 10s place
         digit_2 = int(days_to_go/10)
         if digit_2 > 9:
@@ -49,7 +54,8 @@ class ChristmasCounterDowner:
         # draw each digit
         digit_width = 8
         for idx, digit in enumerate(digits):
-            self._get_method(digit)(digit_width * idx, 0, self.nc, self.matrix)
+            self._get_method(digit)(digit_width * idx + start, 0, self.nc, self.matrix)
+        self.matrix.show()
 
     def _get_method(self, n: int):
         return getattr(numbers, f'_{n}')

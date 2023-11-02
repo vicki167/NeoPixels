@@ -1,6 +1,8 @@
 # Write your code here :-)
 __author__ = 'john'
 
+import time
+
 import board
 import busio
 from digitalio import DigitalInOut
@@ -33,9 +35,9 @@ class Connection:
                 esp.connect_AP(ssid, password)
             except Exception as e:
                 counter += 1
+                time.sleep(1)
+                # going to let this run indefinitely now
                 print(f"could not connect to AP, retrying {counter}: ", e)
-                if counter == 60:
-                    break
                 continue
         print("Connected to", str(esp.ssid, "utf-8"), "\tRSSI:", esp.rssi)
         print("My IP address is", esp.pretty_ip(esp.ip_address))

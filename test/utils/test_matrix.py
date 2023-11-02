@@ -1,7 +1,7 @@
 import sys
 #sys.path.append("../../src/")
 from unittest import TestCase
-from src.utils.matrix import Matrix, LOWER_LEFT, UPPER_LEFT
+from src.utils.matrix import Matrix, LOWER_LEFT, LOWER_RIGHT, UPPER_LEFT
 
 
 class TestMatrix(TestCase):
@@ -61,7 +61,7 @@ class TestMatrix(TestCase):
         self.assertEqual(21, matrix_ulh.compute_pixel(19, 1))
         self.assertEqual(40, matrix_ulh.compute_pixel(0, 1))
 
-    def test_compute_pixel_for_upper_left(self):
+    def test_compute_pixel_for_lower_left(self):
         """
         simple 20x20 matrix with 0 pixel lower left and going vertically
         """
@@ -77,4 +77,21 @@ class TestMatrix(TestCase):
         self.assertEqual(399, matrix_llv.compute_pixel(19, 19))
         # verify the second row.  end should be 18 before last.  start should be at 18
         self.assertEqual(381, matrix_llv.compute_pixel(19, 1))
-        self.assertEqual(18, matrix_llv.compute_pixel(0, 1))
+
+    def test_compute_pixel_for_lower_right(self):
+        """
+        simple 20x20 matrix with 0 pixel lower left and going vertically
+        """
+        matrix_lrv = Matrix(40, 20, None, offset=0, origin=LOWER_RIGHT, vertical=True)
+        assert matrix_lrv
+        # origin should be the 380 pixel since counting from end back 19
+        self.assertEqual(780, matrix_lrv.compute_pixel(0, 0))
+        # end of the first row should be 19 more than the first pixel
+        self.assertEqual(19, matrix_lrv.compute_pixel(39, 0))
+        # end of first column should be the last pixel
+        self.assertEqual(799, matrix_lrv.compute_pixel(0, 19))
+        # end of last column and row should be the first pixel
+        self.assertEqual(0, matrix_lrv.compute_pixel(39, 19))
+        # verify the second row. start should be 18 before last.  end should be at 18
+        self.assertEqual(18, matrix_lrv.compute_pixel(39, 1))
+        self.assertEqual(781, matrix_lrv.compute_pixel(0, 1))

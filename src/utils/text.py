@@ -87,6 +87,8 @@ def r(dx, dy, color, matrix: Matrix):
         if y not in [3]:
             matrix.setPixel(2+dx, y+dy, color)
     matrix.setPixel(1+dx, 3+dy, color)
+    matrix.setPixel(1+dx, 2+dy, color)
+    matrix.setPixel(1+dx, 0+dy, color)
 
 
 def s(dx, dy, color, matrix: Matrix):
@@ -115,9 +117,7 @@ def y(dx, dy, color, matrix: Matrix):
 
 
 def bang(dx, dy, color, matrix: Matrix):
-    for y in range(0,5):
-        if y < 3:
-            if y != 3:
-                matrix.setPixel(0+dx, y+dy, color)
-            matrix.setPixel(2+dx, y+dy, color)
+    for y in range(0, 5):
+        if y != 3:
+            matrix.setPixel(0+dx, y+dy, color)
 
