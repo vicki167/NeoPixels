@@ -1,5 +1,6 @@
 from .ColorUtil import *
 
+
 def drawPumpkin(dx, dy, matrix):
     print(f'drawPumpkin')
     #(0-19 is 0)
@@ -71,6 +72,7 @@ def drawPumpkin(dx, dy, matrix):
     for x in range(4, 17):
         matrix.setPixel(x+dx, 19+dy, PUMPKIN_ORANGE)
     matrix.show()
+
 
 def drawJackOLantern(dx, dy, matrix):
     print(f'drawJackOLantern')
@@ -155,12 +157,13 @@ def drawJackOLantern(dx, dy, matrix):
         matrix.setPixel(x+dx, 19+dy, PUMPKIN_ORANGE)
     matrix.show()
 
+
 def drawWinkingJackOLantern(dx, dy, matrix):
     print(f'drawWinkingJackOLantern')
     #(0-19 is 0)
     PUMPKIN_ORANGE = (240, 120, 0)
     matrix.setPixel(9+dx, 0+dy, GREEN)
-    matrix.setPixel(11+dx, 0+dy, GREEN)
+    matrix.setPixel(10+dx, 0+dy, GREEN)
     matrix.setPixel(11+dx, 0+dy, GREEN)
     # row (39-20 is 1)
     matrix.setPixel(7+dx, 1+dy, PUMPKIN_ORANGE)
@@ -237,6 +240,7 @@ def drawWinkingJackOLantern(dx, dy, matrix):
     for x in range(4, 17):
         matrix.setPixel(x+dx, 19+dy, PUMPKIN_ORANGE)
     matrix.show()
+
 
 def drawGhost(dx, dy, color, matrix):
     print(f'drawGhost')
