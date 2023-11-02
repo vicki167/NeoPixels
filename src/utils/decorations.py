@@ -1,4 +1,4 @@
-from matrix import Matrix
+from utils.matrix import Matrix
 
 class Decoration:
 
@@ -7,6 +7,13 @@ class Decoration:
         self.start = start
         self.end = end
         self.size = end - start + 1
+
+    def show(self):
+        self.pixels.show()
+
+    def fill(self, color):
+        self.pixels.fill(color)
+        self.show()
 
 
 class MatrixDecoration:

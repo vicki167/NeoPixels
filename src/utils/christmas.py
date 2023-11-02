@@ -1,8 +1,8 @@
-from ColorUtil import *
-from matrix import Matrix
-from text import *
-import numbers as numbers
-from decorations import Decoration
+from utils.ColorUtil import *
+from utils.matrix import Matrix
+from utils.text import *
+import utils.numbers as numbers
+from utils.decorations import Decoration
 
 
 class ChristmasCounterDowner:
@@ -73,7 +73,8 @@ class CandyCane(Decoration):
             # along with every other in the second half with a one pixel row all the
             # way at the tip of the candy cane hook (last one)
             for x in range(0, 65, 2):
-                self.rows.append(self.pixels[x:x+1])
+                self.rows.append(self.pixels[x:x+2])
+                print(self.pixels[x:x+1])
             # the tip of the cane that is one pixel
             self.rows.append(pixels[66])
             # now back down, adding to the existing rows
