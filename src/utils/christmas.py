@@ -1,7 +1,8 @@
-from utils.ColorUtil import *
-from utils.matrix import Matrix
-from utils.text import *
-import utils.numbers as numbers
+from ColorUtil import *
+from matrix import Matrix
+from text import *
+import numbers as numbers
+from decorations import Decoration
 
 
 class ChristmasCounterDowner:
@@ -59,4 +60,35 @@ class ChristmasCounterDowner:
 
     def _get_method(self, n: int):
         return getattr(numbers, f'_{n}')
+
+
+class CandyCane(Decoration):
+
+    def __init__(self, pixels, start: int, end: int):
+        super().__init__(pixels, start, end)
+        self.rows = []
+        # setup rows
+        if self.size == 100:
+            # rows are laid out with every two being for the first half
+            # along with every other in the second half with a one pixel row all the
+            # way at the tip of the candy cane hook (last one)
+            for x in range(0, 65, 2):
+                self.rows.append(self.pixels[x:x+1])
+            # the tip of the cane that is one pixel
+            self.rows.append(pixels[66])
+            # now back down, adding to the existing rows
+            for x in range(0, 34):
+                self.rows[32-x].append(pixels[66+x])
+            self.row_num = len(self.rows)
+
+    def stripes(self, color_list, width: int):
+        i = 0
+        for row in self.rows:
+            row = color_list[i%len(color_list)]*len(row)
+            i += 1
+        self.pixels.show()
+
+
+
+
 
