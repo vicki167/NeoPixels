@@ -73,23 +73,34 @@ class CandyCane(Decoration):
             # along with every other in the second half with a one pixel row all the
             # way at the tip of the candy cane hook (last one)
             for x in range(0, 65, 2):
-                self.rows.append(self.pixels[x:x+2])
-                print(self.pixels[x:x+1])
+                self.rows.append([x, x+1])
             # the tip of the cane that is one pixel
-            self.rows.append(pixels[66])
+            self.rows.append([66])
             # now back down, adding to the existing rows
             for x in range(0, 34):
-                self.rows[32-x].append(pixels[66+x])
+                self.rows[33-x].append(66+x)
             self.row_num = len(self.rows)
 
     def stripes(self, color_list, width: int):
         i = 0
+        j = 0
         for row in self.rows:
-            row = color_list[i%len(color_list)]*len(row)
-            i += 1
+            c = color_list[i%len(color_list)]
+            for n in row:
+                self.pixels[n] = c
+            if j < width - 1:
+                j += 1
+            else:
+                i += 1
+                j = 0
         self.pixels.show()
 
+class Stocking(Decoration):
 
-
+    def __init__(self, pixels, start: int, end: int, base_color, fringe_color):
+        super().__init__(pixels, start, end)
+        self.pixels[start: start + 28] = [base_color]*28
+        self.pixels[start + 28: end] = [fringe_color]*22
+        self.pixels.show()
 
 
