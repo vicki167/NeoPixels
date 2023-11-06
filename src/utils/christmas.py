@@ -80,6 +80,14 @@ class CandyCane(Decoration):
             for x in range(0, 34):
                 self.rows[33-x].append(66+x)
             self.row_num = len(self.rows)
+        elif self.size == 200:
+            # four columns of 50 (up, down, up down)
+            # self.rows.append([1, 98, 101, 198])
+            # self.rows.append([2, 97, 102, 197])
+            # self.rows.append([49, 50, 149, 150])
+            for x in range(50):
+                self.rows.append([0+x, 99-x, 100+x, 199-x])
+            self.row_num = len(self.rows)
 
     def stripes(self, color_list, width: int):
         i = 0
@@ -94,6 +102,7 @@ class CandyCane(Decoration):
                 i += 1
                 j = 0
         self.pixels.show()
+
 
 class Stocking(Decoration):
 
