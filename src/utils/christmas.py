@@ -112,43 +112,52 @@ class Stocking(Decoration):
         self.pixels[start + 28: end] = [fringe_color]*22
         self.pixels.show()
 
-def Santa(MatrixDecoration):
+
+class Santa(MatrixDecoration):
     
-    def __init__(self, matrix: Matrix):
+    def __init__(self, matrix: Matrix, x_pos: int = 0, y_pos: int = 0):
         super().__init__(matrix)
-        self.draw(0,0)
+        self.x_pos = x_pos
+        self.y_pos = y_pos
+        self.draw(self.x_pos, self.y_pos)
 
     def draw(self, dx: int, dy: int):
-        self.matrix.setPixels([10, 11, 12], [1], RED)
-        self.matrix.setPixels([9, 10, 11, 12, 13], [2], RED)
-        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [3], RED)
-        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [4], WHITE)
-        self.matrix.setPixels([8, 14], [5], WHITE)
-        self.matrix.setPixels([9, 11, 13], [5], PINK)
-        self.matrix.setPixels([10, 12], [5], BLUE)
-        self.matrix.setPixels([8, 14], [6], WHITE)
-        self.matrix.setPixels([10, 12], [6], PINK)
-        self.matrix.setPixels([9, 11, 13], [6], LRED)
-        self.matrix.setPixels([8, 10, 11, 12, 13, 14], [7], WHITE)
-        self.matrix.setPixels([9, 13], [7], PINK)
-        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [8], PINK)
-        self.matrix.setPixels([11], [8], LRED)
-        self.matrix.setPixels([9, 10, 11, 12, 13], [9], WHITE)
-        self.matrix.setPixels([9, 10, 11, 12, 13], [10], WHITE)
-        self.matrix.setPixels([7, 8, 14, 15], [10], RED)
-        self.matrix.setPixels([10, 11, 12], 11, WHITE)
-        self.matrix.setPixels([7, 8, 9, 13, 14, 15], [11], RED)
-        self.matrix.setPixels([7, 8, 9, 10, 11, 12, 13, 14, 15], [12], RED)
-        self.matrix.setPixels([7, 8, 9, 10, 11, 12, 13, 14, 15], [13], RED)
-        self.matrix.setPixels([11], [14], YELLOW)
-        self.matrix.setPixels([8, 9, 10], [14], DBROWN)
-        self.matrix.setPixels([12, 13, 14], [14], DBROWN)
-        self.matrix.setPixels([7, 15], [14], LGRAY)
-        self.matrix.setPixels([7, 15], [15], LGRAY)
-        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [15], RED)
-        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [16], RED)
-        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [17], RED)
-        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [18], RED)
+        self.matrix.fill(OFF)
+        dx -= 7
+        self.matrix.setPixels([n+dx+self.x_pos for n in [10, 11, 12]], [0+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 10, 11, 12, 13]], [1+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [2+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [3+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 14]], [4+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 11, 13]], [4+dy], PINK)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [10, 12]], [4+dy], BLUE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 14]], [5+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [10, 12]], [5+dy], PINK)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 11, 13]], [5+dy], LRED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 10, 11, 12, 13, 14]], [6+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 13]], [6+dy], PINK)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 12, 13, 14]], [7+dy], PINK)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [11]], [7+dy], LRED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 10, 11, 12, 13]], [8+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [9, 10, 11, 12, 13]], [9+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 14]], [9+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [10, 11, 12]], [10+dy], WHITE)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 13, 14]], [10+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [11+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [12+dy], RED)
+        # belt
+        self.matrix.setPixels([n+dx+self.x_pos for n in [11]], [13+dy], YELLOW)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10]], [13+dy], DBROWN)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [12, 13, 14]], [13+dy], DBROWN)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [14+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 11, 12, 13, 14]], [15+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 12, 13, 14]], [16+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 12, 13, 14]], [17+dy], RED)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [8, 9, 10, 12, 13, 14]], [18+dy], DBROWN)
+        self.matrix.setPixels([n+dx+self.x_pos for n in [7, 8, 9, 10, 12, 13, 14, 15]], [19+dy], DBROWN)
+        # draw arms
+        self._draw_left_arm(dx, dy)
+        self._draw_right_arm(dx, dy)
         self.matrix.show()
 
     def _draw_body(self):
@@ -157,5 +166,28 @@ def Santa(MatrixDecoration):
     def _draw_head(self):
         pass
 
-    def _draw_arms(self):
-        pass
+    def _draw_left_arm(self, dx, dy):
+        self.matrix.setPixel(7+dx, 9+dy, RED)
+        self.matrix.setPixel(7+dx, 10+dy, RED)
+        self.matrix.setPixel(7+dx, 11+dy, RED)
+        self.matrix.setPixel(7+dx, 12+dy, RED)
+        self.matrix.setPixel(7+dx, 13+dy, LGRAY)
+        self.matrix.setPixel(7+dx, 14+dy, LGRAY)
+
+    def _draw_right_arm(self, dx, dy):
+        self.matrix.setPixel(15+dx, 9+dy, RED)
+        self.matrix.setPixel(15+dx, 10+dy, RED)
+        self.matrix.setPixel(15+dx, 11+dy, RED)
+        self.matrix.setPixel(15+dx, 12+dy, RED)
+        self.matrix.setPixel(15+dx, 13+dy, LGRAY)
+        self.matrix.setPixel(15+dx, 14+dy, LGRAY)
+
+    def lift_right_arm(self, dx, dy):
+        dx = self.x_pos + dx
+        dy = self.y_pos + dy
+        self.matrix.setPixel(15+dx, 9+dy, RED)
+        self.matrix.setPixel(16+dx, 9+dy, RED)
+        self.matrix.setPixel(17+dx, 9+dy, RED)
+        self.matrix.setPixel(18+dx, 9+dy, RED)
+        self.matrix.setPixel(19+dx, 9+dy, LGRAY)
+        self.matrix.setPixel(120+dx, 9+dy, LGRAY)
