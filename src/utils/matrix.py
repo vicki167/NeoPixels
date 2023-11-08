@@ -113,6 +113,11 @@ class Matrix:
             # print(p)
             self.pixels[p] = color
 
+    def setPixels(self, x_array, y_array, color):
+        for x in x_array:
+            for y in y_array:
+                self.setPixel(x, y, color)
+
     def setRawPixel(self, pos, color):
         if pos < self.numPix:
             # print(p)

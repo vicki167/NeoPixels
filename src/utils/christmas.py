@@ -2,7 +2,7 @@ from utils.ColorUtil import *
 from utils.matrix import Matrix
 from utils.text import *
 import utils.numbers as numbers
-from utils.decorations import Decoration
+from utils.decorations import Decoration, MatrixDecoration
 
 
 class ChristmasCounterDowner:
@@ -112,4 +112,50 @@ class Stocking(Decoration):
         self.pixels[start + 28: end] = [fringe_color]*22
         self.pixels.show()
 
+def Santa(MatrixDecoration):
+    
+    def __init__(self, matrix: Matrix):
+        super().__init__(matrix)
+        self.draw(0,0)
 
+    def draw(self, dx: int, dy: int):
+        self.matrix.setPixels([10, 11, 12], [1], RED)
+        self.matrix.setPixels([9, 10, 11, 12, 13], [2], RED)
+        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [3], RED)
+        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [4], WHITE)
+        self.matrix.setPixels([8, 14], [5], WHITE)
+        self.matrix.setPixels([9, 11, 13], [5], PINK)
+        self.matrix.setPixels([10, 12], [5], BLUE)
+        self.matrix.setPixels([8, 14], [6], WHITE)
+        self.matrix.setPixels([10, 12], [6], PINK)
+        self.matrix.setPixels([9, 11, 13], [6], LRED)
+        self.matrix.setPixels([8, 10, 11, 12, 13, 14], [7], WHITE)
+        self.matrix.setPixels([9, 13], [7], PINK)
+        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [8], PINK)
+        self.matrix.setPixels([11], [8], LRED)
+        self.matrix.setPixels([9, 10, 11, 12, 13], [9], WHITE)
+        self.matrix.setPixels([9, 10, 11, 12, 13], [10], WHITE)
+        self.matrix.setPixels([7, 8, 14, 15], [10], RED)
+        self.matrix.setPixels([10, 11, 12], 11, WHITE)
+        self.matrix.setPixels([7, 8, 9, 13, 14, 15], [11], RED)
+        self.matrix.setPixels([7, 8, 9, 10, 11, 12, 13, 14, 15], [12], RED)
+        self.matrix.setPixels([7, 8, 9, 10, 11, 12, 13, 14, 15], [13], RED)
+        self.matrix.setPixels([11], [14], YELLOW)
+        self.matrix.setPixels([8, 9, 10], [14], DBROWN)
+        self.matrix.setPixels([12, 13, 14], [14], DBROWN)
+        self.matrix.setPixels([7, 15], [14], LGRAY)
+        self.matrix.setPixels([7, 15], [15], LGRAY)
+        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [15], RED)
+        self.matrix.setPixels([8, 9, 10, 11, 12, 13, 14], [16], RED)
+        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [17], RED)
+        self.matrix.setPixels([8, 9, 10, 12, 13, 14], [18], RED)
+        self.matrix.show()
+
+    def _draw_body(self):
+        pass
+
+    def _draw_head(self):
+        pass
+
+    def _draw_arms(self):
+        pass
