@@ -95,7 +95,7 @@ class CandyCane(Decoration):
         for row in self.rows:
             c = color_list[i%len(color_list)]
             for n in row:
-                self.pixels[n] = c
+                self.pixels[n+self.start] = c
             if j < width - 1:
                 j += 1
             else:
@@ -106,7 +106,7 @@ class CandyCane(Decoration):
 
 class Stocking(Decoration):
 
-    def __init__(self, pixels, start: int, end: int, base_color, fringe_color):
+    def __init__(self, pixels, start: int, end: int, base_color=RED, fringe_color=WHITE):
         super().__init__(pixels, start, end)
         self.pixels[start: start + 28] = [base_color]*28
         self.pixels[start + 28: end] = [fringe_color]*22
@@ -114,7 +114,7 @@ class Stocking(Decoration):
 
 
 class Santa(MatrixDecoration):
-    
+
     def __init__(self, matrix: Matrix, x_pos: int = 0, y_pos: int = 0):
         super().__init__(matrix)
         self.x_pos = x_pos
