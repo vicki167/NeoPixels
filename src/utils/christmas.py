@@ -2,6 +2,7 @@ from utils.ColorUtil import *
 from utils.matrix import Matrix
 from utils.text import *
 import utils.numbers as numbers
+from utils.decorations import Decoration
 
 
 class ChristmasCounterDowner:
@@ -59,4 +60,56 @@ class ChristmasCounterDowner:
 
     def _get_method(self, n: int):
         return getattr(numbers, f'_{n}')
+
+
+class CandyCane(Decoration):
+
+    def __init__(self, pixels, start: int, end: int):
+        super().__init__(pixels, start, end)
+        self.rows = []
+        # setup rows
+        if self.size == 100:
+            # rows are laid out with every two being for the first half
+            # along with every other in the second half with a one pixel row all the
+            # way at the tip of the candy cane hook (last one)
+            for x in range(0, 65, 2):
+                self.rows.append([x, x+1])
+            # the tip of the cane that is one pixel
+            self.rows.append([66])
+            # now back down, adding to the existing rows
+            for x in range(0, 34):
+                self.rows[33-x].append(66+x)
+            self.row_num = len(self.rows)
+        elif self.size == 200:
+            # four columns of 50 (up, down, up down)
+            # self.rows.append([1, 98, 101, 198])
+            # self.rows.append([2, 97, 102, 197])
+            # self.rows.append([49, 50, 149, 150])
+            for x in range(50):
+                self.rows.append([0+x, 99-x, 100+x, 199-x])
+            self.row_num = len(self.rows)
+
+    def stripes(self, color_list, width: int):
+        i = 0
+        j = 0
+        for row in self.rows:
+            c = color_list[i%len(color_list)]
+            for n in row:
+                self.pixels[n] = c
+            if j < width - 1:
+                j += 1
+            else:
+                i += 1
+                j = 0
+        self.pixels.show()
+
+
+class Stocking(Decoration):
+
+    def __init__(self, pixels, start: int, end: int, base_color, fringe_color):
+        super().__init__(pixels, start, end)
+        self.pixels[start: start + 28] = [base_color]*28
+        self.pixels[start + 28: end] = [fringe_color]*22
+        self.pixels.show()
+
 
