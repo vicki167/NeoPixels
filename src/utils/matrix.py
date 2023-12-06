@@ -13,11 +13,11 @@ LOWER_RIGHT = 3
 class Matrix:
 
     def __init__(self, width, height, pin, brightness=0.2, auto_write=False, pixel_order=None,
-                 origin=UPPER_LEFT, offset=1, vertical=True):
+                 origin=UPPER_LEFT, offset=1, extra_pixels=0, vertical=True):
         self.width = width
         self.height = height
         self.offset = offset
-        self.numPix = width * height + offset
+        self.numPix = width * height + offset + extra_pixels
         self.origin = origin
         self.vertical = vertical
         # if check is necessary so that we can test without running on a board
@@ -117,6 +117,13 @@ class Matrix:
         if pos < self.numPix:
             # print(p)
             self.pixels[pos] = color
+
+    def setRawPixels(self, start_pos, end_pos, color, show=True):
+        if start_pos < end_pos < self.numPix:
+            for x in range(start_pos, end_pos+1):
+                self.pixels[x] = color
+            if show:
+                self.show()
 
     def fill(self, color, show=False):
         self.pixels.fill(color)

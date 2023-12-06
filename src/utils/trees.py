@@ -13,9 +13,9 @@ class SpiralTree(MatrixDecoration):
 
     def __init__(self, matrix: Matrix, gap=3):
         super().__init__(matrix)
-        self.gap = 3
+        self.gap = gap
 
-    def execute(self, top_color=(255, 255, 255), bottom_color=GREEN, offset=0):
+    def execute(self, top_color=WHITE, bottom_color=GREEN, offset=0):
         """
 
         :param top_color:
@@ -25,11 +25,9 @@ class SpiralTree(MatrixDecoration):
         """
         y_lim = self.matrix.height
         # get difference to WHITE (255, 255, 255)
-        #print(top_color)
-        #print(bottom_color)
-        diff_r = WHITE[0] - bottom_color[0]
-        diff_g = WHITE[1] - bottom_color[1]
-        diff_b = WHITE[2] - bottom_color[2]
+        diff_r = top_color[0] - bottom_color[0]
+        diff_g = top_color[1] - bottom_color[1]
+        diff_b = top_color[2] - bottom_color[2]
         # get delta per pixel
         del_r = diff_r/y_lim
         del_g = diff_g/y_lim
