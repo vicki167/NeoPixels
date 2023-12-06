@@ -71,7 +71,7 @@ class Matrix:
             p = self.get_pix_num(y, x, swap_x=True)
         elif self.origin == LOWER_RIGHT:
             p = self.get_pix_num(y, x, swap_x=True, swap_y=True)
-            print(p)
+            #print(p)
             # self.baseSetPixel_lr(x,y,color)
         elif self.origin == UPPER_RIGHT:
             p = self.get_pix_num(x, y, swap_x=True)
@@ -102,10 +102,10 @@ class Matrix:
     def setPixel(self, x, y, color):
         # verify the x and y positions are within the bounds of the matrix
         if x >= self.width or x < 0:
-            print(f'{x} must be between 0 and {self.width}')
+            print(f'Width {x} must be between 0 and {self.width}')
             return
         if y >= self.height or y < 0:
-            print(f'{x} must be between 0 and {self.width}')
+            print(f'Height {y} must be between 0 and {self.height}')
             return
         p = self.compute_pixel(x, y)
         # set the pixel color, making sure that we do not write over the pixel limit
@@ -120,6 +120,18 @@ class Matrix:
 
     def fill(self, color, show=False):
         self.pixels.fill(color)
+        if show:
+            self.show()
+
+    def column(self, color, column, show=False):
+        for y in range(0, self.height):
+            self.setPixel(column, y, color)
+        if show:
+            self.show()
+
+    def row(self, color, row, show=False):
+        for x in range(0, self.width):
+            self.setPixel(x, row, color)
         if show:
             self.show()
 

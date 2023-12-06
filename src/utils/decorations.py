@@ -1,5 +1,6 @@
 from utils.matrix import Matrix
 
+
 class Decoration:
 
     def __init__(self, pixels, start: int, end: int):
