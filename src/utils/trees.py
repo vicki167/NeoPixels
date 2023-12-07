@@ -42,15 +42,22 @@ class SpiralTree(MatrixDecoration):
 
         # starting from the top, make spiraling bands of black going down the tree
         # for each column, add segments, incrementing by one each time
-        counter = 0
-        while counter + self.gap < (self.matrix.height+3):
-            x = counter % (self.matrix.width)
-            y = counter
-            counter += 1
-            for n in range(self.gap):
-                #print(f'Computed y: {y+offset+n}')
-                #print(f'Height: {self.matrix.height-1}')
-                self.matrix.setPixel(x, (y+offset+n) % (self.matrix.height), OFF)
+        # compute number of spiral stripes that fit evenly
+        num_stripes = self.matrix.height % (self.matrix.width * self.gap)
+        i = 0
+        while i < num_stripes:
+            for x in range(self.matrix.width):
+                y = x + i * (self.matrix.width + self.gap)
+                for n in range(self.gap):
+                    self.matrix.setPixel(x, (y+offset+n) % self.matrix.height, OFF)
+                i += 1
+
+        # while counter + self.gap < (self.matrix.height+3):
+        #     x = counter % (self.matrix.width)
+        #     y = counter
+        #     counter += 1
+        #     for n in range(self.gap):
+        #         self.matrix.setPixel(x, (y+offset+n) % (self.matrix.height), OFF)
         self.matrix.show()
 
 
