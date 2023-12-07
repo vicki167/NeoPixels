@@ -119,8 +119,8 @@ class Matrix:
             self.pixels[pos] = color
 
     def setRawPixels(self, start_pos, end_pos, color, show=True):
-        if start_pos < end_pos < self.numPix:
-            for x in range(start_pos, end_pos+1):
+        if start_pos < end_pos < self.numPix+1:
+            for x in range(start_pos, end_pos):
                 self.pixels[x] = color
             if show:
                 self.show()

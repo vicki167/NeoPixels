@@ -15,7 +15,7 @@ class SpiralTree(MatrixDecoration):
         super().__init__(matrix)
         self.gap = gap
 
-    def execute(self, top_color=WHITE, bottom_color=GREEN, offset=0):
+    def execute(self, top_color=WHITE, bottom_color=GREEN, gap_color=OFF, offset=0):
         """
 
         :param top_color:
@@ -50,7 +50,7 @@ class SpiralTree(MatrixDecoration):
             for n in range(self.gap):
                 #print(f'Computed y: {y+offset+n}')
                 #print(f'Height: {self.matrix.height-1}')
-                self.matrix.setPixel(x, (y+offset+n) % (self.matrix.height), OFF)
+                self.matrix.setPixel(x, (y+offset+n) % (self.matrix.height), gap_color)
         self.matrix.show()
 
 
