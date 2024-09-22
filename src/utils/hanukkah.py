@@ -50,7 +50,7 @@ class Menorah:
             self._draw_candle(35, 2)
             self._draw_flame(35, 2)
             self._draw_candle(31, 2)
-            self._draw_flame(35, 2)
+            self._draw_flame(31, 2)
         elif day == 3:
             self._draw_candle(35, 2)
             self._draw_flame(35, 2)
