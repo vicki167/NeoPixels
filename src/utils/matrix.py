@@ -12,14 +12,16 @@ LOWER_RIGHT = 3
 
 class Matrix:
 
-    def __init__(self, width, height, pin, brightness=0.2, auto_write=False, pixel_order=None,
-                 origin=UPPER_LEFT, offset=1, extra_pixels=0, vertical=True):
+    def __init__(self, width, height, pin=None, pixels=None, brightness=0.2, auto_write=False, pixel_order=None,
+                 origin=UPPER_LEFT, offset=1, extra_pixels=0, vertical=True, x_wrap=False, y_wrap=False):
         self.width = width
         self.height = height
         self.offset = offset
         self.numPix = width * height + offset + extra_pixels
         self.origin = origin
         self.vertical = vertical
+        self.x_wrap = x_wrap
+        self.y_wrap = y_wrap
         # if check is necessary so that we can test without running on a board
         if pin:
             import neopixel
@@ -29,6 +31,8 @@ class Matrix:
                                             pixel_order=pixel_order)
             self.pixels.fill(OFF)
             self.pixels.show()
+        elif pixels:
+            self.pixels = pixels
 
     def baseSetPixel(self, x, y, color, flip=False):
         # convert the x and y to a pixel position
@@ -71,7 +75,7 @@ class Matrix:
             p = self.get_pix_num(y, x, swap_x=True)
         elif self.origin == LOWER_RIGHT:
             p = self.get_pix_num(y, x, swap_x=True, swap_y=True)
-            #print(p)
+            # print(p)
             # self.baseSetPixel_lr(x,y,color)
         elif self.origin == UPPER_RIGHT:
             p = self.get_pix_num(x, y, swap_x=True)
@@ -100,14 +104,17 @@ class Matrix:
         return p
 
     def setPixel(self, x, y, color):
+        # flow
+        x_converted = x % self.width if self.x_wrap else x
+        y_converted = y % self.height if self.y_wrap else y
         # verify the x and y positions are within the bounds of the matrix
-        if x >= self.width or x < 0:
-            print(f'Width {x} must be between 0 and {self.width}')
+        if x_converted >= self.width or x_converted < 0:
+            # print(f'Width {x} must be between 0 and {self.width}')
             return
-        if y >= self.height or y < 0:
-            print(f'Height {y} must be between 0 and {self.height}')
+        if y_converted >= self.height or y_converted < 0:
+            # print(f'Height {y} must be between 0 and {self.height}')
             return
-        p = self.compute_pixel(x, y)
+        p = self.compute_pixel(x_converted, y_converted)
         # set the pixel color, making sure that we do not write over the pixel limit
         if p < self.numPix:
             # print(p)
@@ -120,7 +127,7 @@ class Matrix:
 
     def setRawPixels(self, start_pos, end_pos, color, show=True):
         if start_pos < end_pos < self.numPix:
-            for x in range(start_pos, end_pos+1):
+            for x in range(start_pos, end_pos + 1):
                 self.pixels[x] = color
             if show:
                 self.show()
@@ -139,6 +146,13 @@ class Matrix:
     def row(self, color, row, show=False):
         for x in range(0, self.width):
             self.setPixel(x, row, color)
+        if show:
+            self.show()
+
+    def section(self, color, x_start, x_end, y_start, y_end, show=False):
+        for x in range(x_start, x_end + 1):
+            for y in range(y_start, y_end + 1):
+                self.setPixel(x, y, color)
         if show:
             self.show()
 

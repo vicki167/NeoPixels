@@ -161,7 +161,6 @@ def drawJackOLantern(dx, dy, matrix):
 def drawWinkingJackOLantern(dx, dy, matrix):
     print(f'drawWinkingJackOLantern')
     #(0-19 is 0)
-    PUMPKIN_ORANGE = (240, 120, 0)
     matrix.setPixel(9+dx, 0+dy, GREEN)
     matrix.setPixel(10+dx, 0+dy, GREEN)
     matrix.setPixel(11+dx, 0+dy, GREEN)
@@ -298,3 +297,38 @@ def drawGhost(dx, dy, color, matrix):
     # 13,6
     matrix.setPixel(13+dx,6+dy,RED)
     matrix.show()
+
+
+def drawSmallPumpkin(matrix, color=PUMPKIN_ORANGE, dx=0, dy=0):
+    for x in [4, 5]:
+        matrix.setPixel(x+dx, dy, GREEN)
+        matrix.setPixel(x+dx, (1+dy), GREEN)
+    for x in [2, 3, 6, 7]:
+        matrix.setPixel(x+dx, (1+dy), color)
+    for x in range(1, 9):
+        matrix.setPixel(x+dx, (2+dy), color)
+    for y in range(3, 9):
+        for x in range(0, 10):
+            matrix.setPixel(x+dx, (y+dy), color)
+    for x in range(1, 9):
+        matrix.setPixel(x+dx, (9+dy), color)
+    matrix.setPixel(3+dx, (4+dy), OFF)
+    matrix.setPixel(6+dx, (4+dy), OFF)
+    matrix.setPixel(3+dx, (7+dy), OFF)
+    matrix.setPixel(6+dx, (7+dy), OFF)
+    matrix.setPixel(4+dx, (8+dy), OFF)
+    matrix.setPixel(5+dx, (8+dy), OFF)
+
+
+def drawSmallGhost(matrix, color=WHITE, dx=0, dy=0):
+    for x in range(2, 6):
+        matrix.setPixel(x+dx, dy, color)
+    for x in range(1, 7):
+        matrix.setPixel(x+dx, (1+dy), color)
+    for y in range(2, 9):
+        for x in range(0, 8):
+            matrix.setPixel(x+dx, (y+dy), color)
+    for x in [0, 1, 3, 4, 6,7]:
+        matrix.setPixel(x+dx, (9+dy), color)
+    matrix.setPixel(2+dx, (3+dy), RED)
+    matrix.setPixel(5+dx, (3+dy), RED)
