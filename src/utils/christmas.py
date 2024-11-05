@@ -106,7 +106,7 @@ class CandyCane(Decoration):
 
 class Stocking(Decoration):
 
-    def __init__(self, pixels, start: int, end: int, base_color, fringe_color):
+    def __init__(self, pixels, start: int, end: int, base_color = RED, fringe_color=WHITE):
         super().__init__(pixels, start, end)
         self.pixels[start: start + 28] = [base_color] * 28
         self.pixels[start + 28: end] = [fringe_color] * 22
@@ -210,6 +210,8 @@ class Train(MatrixDecoration):
         self.matrix.section(x_start=68 + dx, x_end=70 + dx, y_start=8 + dy, y_end=8 + dy, color=self.accent_color)
         # connector
         self.matrix.setPixel(52 + dx, 7 + dy, self.base_color)
+        # smoke
+        self.draw_smoke(x=68 + dx, y=0)
         # wheels
         # self.matrix.section(x_start=54+dx, x_end=56+dx, y_start=7+dy, y_end=9+dy, color=self.wheel_color)
         self.draw_big_wheel(x=54 + dx, y=7 + dy)
@@ -240,3 +242,47 @@ class Train(MatrixDecoration):
             self.matrix.setPixel(x, y + 2, TAN)
         elif pn == 3:
             self.matrix.setPixel(x, y, TAN)
+
+    def draw_smoke(self, x, y):
+        # self.matrix.section(x_start=67 + dx, x_end=68 + dx, y_start=1 + dy, y_end=1 + dy, color=self.accent_color)
+        # self.matrix.section(x_start=x, x_end=x + 2, y_start=y, y_end=y + 2, color=self.wheel_color)
+        pn = self.n % 10
+        HALF = (128, 128, 128)
+        QUARTER = (64, 64, 64)
+        EIGHTH = (32, 32, 32)
+        if pn == 0:
+            self.matrix.setPixel(x, y, HALF)
+            self.matrix.setPixel(x-1, y, HALF)
+        elif pn == 1:
+            self.matrix.setPixel(x, y, WHITE)
+            self.matrix.setPixel(x-1, y, HALF)
+            self.matrix.setPixel(x-2, y, HALF)
+        elif pn == 2:
+            self.matrix.setPixel(x, y, WHITE)
+            self.matrix.setPixel(x-1, y, WHITE)
+            self.matrix.setPixel(x-2, y, HALF)
+            self.matrix.setPixel(x-3, y, HALF)
+        elif pn == 3:
+            self.matrix.setPixel(x, y, WHITE)
+            self.matrix.setPixel(x-1, y, WHITE)
+            self.matrix.setPixel(x-2, y, WHITE)
+            self.matrix.setPixel(x-3, y, HALF)
+            self.matrix.setPixel(x-4, y, HALF)
+        elif pn == 4:
+            self.matrix.setPixel(x-1, y, HALF)
+            self.matrix.setPixel(x-2, y, HALF)
+            self.matrix.setPixel(x-3, y, HALF)
+            self.matrix.setPixel(x-4, y, QUARTER)
+            self.matrix.setPixel(x-5, y, QUARTER)
+        elif pn == 5:
+            self.matrix.setPixel(x-2, y, QUARTER)
+            self.matrix.setPixel(x-3, y, QUARTER)
+            self.matrix.setPixel(x-4, y, QUARTER)
+            self.matrix.setPixel(x-5, y, EIGHTH)
+            self.matrix.setPixel(x-6, y, EIGHTH)
+        elif pn == 6:
+            self.matrix.setPixel(x-3, y, EIGHTH)
+            self.matrix.setPixel(x-4, y, EIGHTH)
+            self.matrix.setPixel(x-5, y, EIGHTH)
+            self.matrix.setPixel(x-6, y, EIGHTH)
+            self.matrix.setPixel(x-7, y, EIGHTH)

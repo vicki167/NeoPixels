@@ -73,7 +73,6 @@ def drawPumpkin(dx, dy, matrix):
         matrix.setPixel(x+dx, 19+dy, PUMPKIN_ORANGE)
     matrix.show()
 
-
 def drawJackOLantern(dx, dy, matrix):
     print(f'drawJackOLantern')
     #(0-19 is 0)
@@ -299,7 +298,22 @@ def drawGhost(dx, dy, color, matrix):
     matrix.show()
 
 
-def drawSmallPumpkin(matrix, color=PUMPKIN_ORANGE, dx=0, dy=0):
+def draw_small_pumpkin(matrix, color=PUMPKIN_ORANGE, dx=0, dy=0):
+    for x in [4, 5]:
+        matrix.setPixel(x+dx, dy, GREEN)
+        matrix.setPixel(x+dx, (1+dy), GREEN)
+    for x in [2, 3, 6, 7]:
+        matrix.setPixel(x+dx, (1+dy), color)
+    for x in range(1, 9):
+        matrix.setPixel(x+dx, (2+dy), color)
+    for y in range(3, 9):
+        for x in range(0, 10):
+            matrix.setPixel(x+dx, (y+dy), color)
+    for x in range(1, 9):
+        matrix.setPixel(x+dx, (9+dy), color)
+
+
+def drawSmallJackOLantern(matrix, color=PUMPKIN_ORANGE, dx=0, dy=0):
     for x in [4, 5]:
         matrix.setPixel(x+dx, dy, GREEN)
         matrix.setPixel(x+dx, (1+dy), GREEN)
